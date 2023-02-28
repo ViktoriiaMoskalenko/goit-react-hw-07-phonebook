@@ -24,10 +24,10 @@ export const ContactList = () => {
     const contactsData = hendleFind()
 return (
             <ul>
-        {contactsData.map(({ name, number }, index) =>           
+        {contactsData.map(({ name, number, id }, index) =>           
             <li key={nanoid()} className={styles.item}>
                         <span>{name}: {number}</span>
-                        <button type='button' className = {styles.item_btn} onClick={()=>onDelete(index)} key = {index}>Delete</button>
+                        <button type='button' className = {styles.item_btn} onClick={()=>onDelete(id)} key = {index}>Delete</button>
                     </li>
                 )}
              </ul>
