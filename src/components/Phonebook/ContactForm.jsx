@@ -1,24 +1,23 @@
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from "react-redux";
+import { useState } from 'react';
 import {addContact} from '../../redux/operations'
-import { setStatusName } from '../../redux/nameSlice'
-import { setStatusNumber } from '../../redux/numberSlice'
 import { nanoid } from 'nanoid'
 import styles from './Phonebook.module.css'
 export function ContactForm (){
   const contacts = useSelector(state => state.contacts.items);
-  const name = useSelector(state => state.name);
-  const number = useSelector(state => state.number);
+   const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
     const dispatch = useDispatch();
   
     function hendleChange (event) {
     const { name, value } = event.currentTarget
         switch (name) {
           case 'name':
-            dispatch(setStatusName(value))
+            setName(value)
             break;
           case 'number':
-            dispatch(setStatusNumber(value))
+            setNumber(value)
             break;
         
           default:
@@ -42,8 +41,8 @@ export function ContactForm (){
   
 
       function reset () {
-      dispatch(setStatusName(''))
-      dispatch(setStatusNumber(''))
+      setName('')
+      setNumber('')
   }
     
         return (
